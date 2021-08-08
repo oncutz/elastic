@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+  }
+  
+  h3,
+  h4 {
+    width: 100%;
+  }
+  
+  h3,
+  h4 {
+    animation: left_to_right 3s ease;
+  }
+  
+  h2 {
+    text-align: right;
+    animation: left_to_right 3s ease;
+  }
+  
+  @keyframes right_to_left {
+    from {
+      margin-left: 100%;
+    }
+    to {
+      margin-left: 0;
+    }
+  }
+  
+  @keyframes left_to_right {
+    from {
+      margin-left: -100%;
+    }
+    to {
+      margin-left: 0;
+    }
+  }

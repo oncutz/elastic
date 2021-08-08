@@ -35,6 +35,9 @@ class CronJob
         $this->dbRead = $dbRead;
         $this->dbWrite = $dbWrite;
         $this->params  = $params;
+
+        $this->makeSureTablesExist();
+
         $dir = new RecursiveDirectoryIterator(__DIR__ . '/../../../files');
         foreach(new RecursiveIteratorIterator($dir) as $fileInfo) {
             if($fileInfo->getExtension() === 'xml'){
@@ -122,6 +125,29 @@ class CronJob
         }
 
        
+    }
+
+    /**
+     * creation of the two main tables wew ill be using
+     */
+    public function makeSureTablesExist() : void
+    {
+        $this->dbWrite->exec("create table if not exists authors (
+                                    author_id SERIAL PRIMARY KEY,
+                                    name varchar(255),
+                                    CONSTRAINT author_unique
+                                            UNIQUE(name)
+                                    )");
+        $this->dbWrite->exec("create table if not exists books (
+                                        id SERIAL PRIMARY KEY,
+                                        author_id INT NOT NULL,
+                                        name varchar(255),
+                                        CONSTRAINT fk_author
+                                            FOREIGN KEY(author_id)
+                                                REFERENCES authors(author_id),
+                                        CONSTRAINT book_name_unique
+                                                UNIQUE(name)
+                                        )");
     }
 
 

@@ -1,8 +1,8 @@
 <?php
 return 
 [
-    'dsnRead'       => "pgsql:host='localhost';port=49156;dbname='postgres';",
-    'dsnWrite'      => "pgsql:host='localhost';port=49155;dbname='postgres';",
+    'dsnRead'       => "pgsql:host='localhost';port=5431;dbname='postgres';",
+    'dsnWrite'      => "pgsql:host='localhost';port=5430;dbname='postgres';",
     'db_name'       => 'postgres',
     'db_user'       => 'postgres',
     'db_pass'       => 'my_password',

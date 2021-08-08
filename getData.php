@@ -16,8 +16,7 @@ if (isset($_GET['q'])) {
 					'query' => [ 
 								'bool' => [
 										'should' => [
-												'match' => ['name'  => $q],
-												'match' => ['books' => $q]
+												'match' => ['name'  => $q]
 												]
 										]
 								]
@@ -25,9 +24,7 @@ if (isset($_GET['q'])) {
 	]);
 
 	if ($query['hits']['total']['value'] >= 1 )
-		$results = $query['hits']['hits'];
-
-
+			echo(json_encode($query['hits']['hits'][0]['_source']));
 }
 
 if($_POST['newIndex']) {
@@ -103,56 +100,3 @@ if($_GET['search']) {
 	$response = $client->search($params);
 	print_r($response);
 }
-
-
-	 if(isset($_GET['q'])) { // (4)
-
-		$q = $_GET['q'];
-		
-		$query = $client->search([
-			'body' => [
-						'query' => [ // (5)
-									'bool' => [
-											'should' => [
-													'match' => ['name'  => $q],
-													'match' => ['books' => $q]
-													]
-											]
-									]
-					]
-		]);
-
-		echo "<pre>";
-		var_dump($query['hits']['hits']);
-		die();
-		if($query['hits']['total'] >=1 ) { // (6)
-		$results = $query['hits']['hits'];
-		
-		}
-		
-		}
-		?>
-		
-		<!-- HTML STARTS HERE -->
-		<!DOCTYPE>
-		<html>  
-			<head>
-				<meta charset="utf-8">
-				<title>Search Elasticsearch</title>
-				<link rel="stylesheet" href="css/main.css">
-			</head>
-			<body>
-				<form action="index.php" method="get" autocomplete="off">
-					<label>
-						Search for Something
-						<input type="text" name="q">
-					</label>
-					<input type="submit" value="search">
-				</form>
-							   
-				<div class="res">
-					<a href="#id">Name</a>
-				</div>
-				<div class="res">Attributes</div>
-			</body>
-		</html>
