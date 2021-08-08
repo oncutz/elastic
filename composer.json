@@ -1,0 +1,19 @@
+{
+    "name": "test/books",
+    "description": "Test to create XML parsing procedure",
+    "autoload": {
+        "psr-4": {
+            "Test\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adrian Oancea",
+            "email": "adrian@output.ro"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "elasticsearch/elasticsearch": "^7.0"
+    }
+}
